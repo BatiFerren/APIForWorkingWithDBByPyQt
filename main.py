@@ -53,6 +53,7 @@ class mywindow(QtWidgets.QMainWindow):
 
     def btnClickedShowStatistics(self):
         operator = self.ui.lineEdit_2.text()
+        error = ""
         if operator == '':
             error = "Enter the name of operator"
         else:
@@ -106,11 +107,14 @@ class mywindow(QtWidgets.QMainWindow):
                 row += 1
 
         self.ui.lineEdit_2.setText('')
-        """if error:
+        if error:
             self.ui.label_7.setText(error)
-            self.ui.label_7.setStyleSheet('color: red')"""
+            self.ui.label_7.setStyleSheet('color: red')
+        else:
+            self.ui.label_7.setText('')
 
     def btnClickedRemoveTest(self):
+        error = ""
         delete_id = self.ui.lineEdit_3.text()
         if delete_id:
             main_connect = connect_db('tests.db')
@@ -124,13 +128,15 @@ class mywindow(QtWidgets.QMainWindow):
             self.ui.lineEdit_3.setText('')
         else:
             error = "Enter ID of the test to remove"
-        """if error:
+        if error:
             self.ui.label_7.setText(error)
             self.ui.label_7.setStyleSheet('color: red')
         else:
-            self.ui.label_7.setText('')"""
+            self.ui.label_7.setText('Test ID # ' + delete_id + ' has removed')
+            self.ui.label_7.setStyleSheet('color: green')
 
     def btnClickedAdd(self):
+        error = ""
         main_connect = connect_db('tests.db')
         main_cursor = main_connect.cursor()
 
@@ -153,9 +159,12 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.lineEdit.setText('')
         self.ui.spinBox.setValue(0)
         self.btnClickedShowAll()
-        """if error:
+        if error:
             self.ui.label_7.setText(error)
-            self.ui.label_7.setStyleSheet('color: red')"""
+            self.ui.label_7.setStyleSheet('color: red')
+        else:
+            self.ui.label_7.setText('Test has been added')
+            self.ui.label_7.setStyleSheet('color: green')
 
 
     def btnClickedShowAll(self):
