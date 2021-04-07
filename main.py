@@ -1,4 +1,3 @@
-import csv
 import sqlite3
 import datetime
 from mydesign import Ui_MainWindow
@@ -10,24 +9,6 @@ from PyQt5.QtWidgets import QTableWidgetItem
 def connect_db(name_db):
     connect = sqlite3.connect(name_db)
     return connect
-
-
-"""def create_table(name_table, connect):
-    cur = connect.cursor()
-    sql = '''CREATE TABLE IF NOT EXISTS ''' + name_table + ''' (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Device_type text, Operator text, Time text, Success int)'''
-    cur.execute(sql)
-    connect.commit
-
-
-def read_csv_and_write_to_db(file_obj, con):
-    with open(file_obj, newline='') as f:
-        reader = csv.reader(f)
-        header = next(reader)
-        if header != None:
-            for row in reader:
-                cur = con.cursor()
-                cur.execute("INSERT INTO tests_results (Device_type, Operator, Time, Success) VALUES(?, ?, ?, ?);", row)
-                con.commit()"""
 
 
 def show_all_tests():
@@ -49,7 +30,6 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.pushButton.clicked.connect(self.btnClickedAdd)
         self.ui.pushButton_2.clicked.connect(self.btnClickedRemoveTest)
         self.ui.pushButton_4.clicked.connect(self.btnClickedShowStatistics)
-
 
     def btnClickedShowStatistics(self):
         operator = self.ui.lineEdit_2.text()
@@ -165,7 +145,6 @@ class mywindow(QtWidgets.QMainWindow):
         else:
             self.ui.label_7.setText('Test has been added')
             self.ui.label_7.setStyleSheet('color: green')
-
 
     def btnClickedShowAll(self):
         show_list = show_all_tests()
