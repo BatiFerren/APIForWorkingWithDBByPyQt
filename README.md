@@ -1,3 +1,3 @@
-# TestTaskAjaxSystemsQt
+# APIForWorkingWithDBByPyQt
 
 Created by Vladimir Murashko
